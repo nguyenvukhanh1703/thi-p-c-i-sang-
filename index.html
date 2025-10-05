@@ -1,310 +1,344 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thiệp Cưới — Nguyễn Thanh Sang & Nguyễn Thùy Vân</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Thiệp Cưới — Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --pink:#ffdfee;
-      --accent:#d45b86;
-      --text:#3b2a2a;
-      --muted:#6b514f;
-      --card:#ffffff;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family: 'Roboto', sans-serif; color:var(--text); background:linear-gradient(180deg,#fff0f6 0%, #ffeef6 100%);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
+<style>
+  :root{
+    --pink:#ffeef2;
+    --accent:#d66a87;
+    --text:#3b2b2b;
+    --muted:#7a6566;
+    --white:#fff;
+  }
+  html,body{height:100%;margin:0;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+  body{background:var(--pink); color:var(--text); -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent); text-decoration:none}
 
-    /* HERO */
-    .hero{
-      position:relative;
-      width:100%; max-width:1100px; margin:30px auto;
-      border-radius:16px; overflow:hidden; box-shadow:0 12px 50px rgba(0,0,0,0.12);
-      background:var(--card);
-    }
-    .hero .bg{
-      width:100%; height:420px; object-fit:cover; display:block;
-      background:linear-gradient(0deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
-    }
-    .hero .overlay{
-      position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center;
-      text-align:center; padding:30px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
-    }
-    .hero .names{
-      font-family:'Playfair Display', serif; color:var(--accent);
-      font-size:44px; letter-spacing:1px; margin:0 0 8px;
-    }
-    .hero .subtitle{ font-size:16px; color:var(--muted); margin-bottom:14px; }
-    .hero .date{
-      background: rgba(255,255,255,0.85); padding:8px 16px; border-radius:999px; font-weight:500; color:var(--text);
-      display:inline-block; box-shadow:0 6px 18px rgba(212,91,134,0.08);
-    }
+  /* HERO / SLIDESHOW */
+  .hero-wrap{position:relative; height:90vh; min-height:560px; overflow:hidden; display:flex; align-items:center; justify-content:center;}
+  .slide {
+    position:absolute; inset:0; background-size:cover; background-position:center; filter:contrast(0.95) brightness(0.85);
+    opacity:0; transform:scale(1.03); transition: opacity 1s ease, transform 8s ease;
+  }
+  .slide.show{opacity:1; transform:scale(1);}
+  .overlay {
+    position:relative; z-index:20; text-align:center; color:var(--white);
+    padding:12px 20px; width:100%; max-width:1100px;
+  }
+  .small-top{letter-spacing:3px; font-size:13px; opacity:0.95}
+  .names{font-family: 'Playfair Display', serif; font-size:56px; margin:12px 0 6px; color:var(--white); text-shadow:0 6px 22px rgba(100,30,40,0.25)}
+  .date-badge{display:inline-block; margin-top:14px; background:rgba(255,255,255,0.14); padding:10px 18px; border-radius:999px; font-weight:600; color:var(--white)}
+  .hero-controls { position: absolute; left:20px; bottom:20px; z-index:30; }
 
-    /* hearts falling */
-    .heart{
-      position:absolute; width:18px; height:18px; background:var(--accent); transform:rotate(45deg); border-radius:3px;
-      opacity:0.9; box-shadow:0 6px 18px rgba(212,91,134,0.15);
-      will-change: transform, opacity;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-80px) rotate(45deg) scale(0.9); opacity:1; }
-      100% { transform: translateY(720px) rotate(45deg) scale(0.6); opacity:0; }
-    }
+  /* hearts */
+  .heart{position:absolute; width:18px; height:18px; transform:rotate(45deg); background:var(--accent); border-radius:3px; opacity:0.95; box-shadow:0 8px 20px rgba(214,106,135,0.12); pointer-events:none; z-index:15}
 
-    /* CONTENT */
-    .content{ padding:28px; max-width:900px; margin:0 auto; }
+  /* MAIN CONTENT */
+  main{max-width:1100px; margin:-60px auto 80px; padding:0 18px; z-index:40; position:relative}
+  .card{background:var(--white); border-radius:14px; box-shadow:0 18px 50px rgba(10,10,10,0.08); padding:28px; margin-bottom:28px}
+  .two-photos{display:flex; gap:18px; justify-content:center; margin-top:-40px}
+  .two-photos img{width:240px;height:240px; object-fit:cover;border-radius:6px; box-shadow:0 8px 30px rgba(0,0,0,0.08); border:10px solid #fff}
+  .intro-text{ text-align:center; padding:18px 30px; color:var(--muted); font-size:16px; line-height:1.7 }
 
-    .section{ background:var(--card); border-radius:12px; padding:20px; margin:18px 0; box-shadow:0 8px 30px rgba(0,0,0,0.04); }
-    .section h2{ font-family:'Playfair Display', serif; color:var(--accent); margin:0 0 12px; font-size:22px; }
-    .story p{ color:var(--muted); line-height:1.65; margin:0 0 10px; }
+  /* Save the date / countdown */
+  .save-row{display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap}
+  .countdown{ text-align:center; padding:18px; }
+  .countdown .nums{display:flex; gap:12px; justify-content:center; margin-top:10px}
+  .num{background:#fff7fa; padding:16px 18px; border-radius:10px; min-width:80px; font-weight:700; color:var(--accent)}
+  .actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:10px}
+  .btn{background:transparent; border:2px solid var(--accent); color:var(--accent); padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:700}
+  .btn.fill{background:var(--accent); color:#fff; border:0}
 
-    /* schedule */
-    .schedule .item{ display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; }
-    .schedule .time{ min-width:110px; background:#fff4f8; color:var(--accent); padding:8px 10px; border-radius:8px; font-weight:600; text-align:center; }
-    .schedule .desc{ color:var(--muted); }
+  /* gallery */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:8px }
+  .gallery-grid img{width:100%; height:160px; object-fit:cover; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.04); cursor:pointer}
 
-    /* gallery */
-    .gallery-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
-    .gallery-grid img{ width:100%; height:110px; object-fit:cover; border-radius:10px; cursor:pointer; }
+  /* events list */
+  .events{ display:grid; grid-template-columns:1fr; gap:14px }
+  .event-item{ background:rgba(255,255,255,0.95); border-left:6px solid var(--accent); padding:14px; border-radius:8px; display:flex; gap:12px; align-items:center}
+  .event-item img{width:68px;height:68px;border-radius:50%;object-fit:cover}
+  .event-body{ color:var(--muted) }
 
-    /* guestbook / rsvp */
-    .rsvp form{ display:flex; flex-direction:column; gap:10px; }
-    .rsvp input, .rsvp textarea{ padding:10px; border-radius:8px; border:1px solid #eee; font-size:15px; resize:vertical; }
-    .btn{ display:inline-block; background:var(--accent); color:#fff; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600; border:none; cursor:pointer; }
-    .muted{ color:var(--muted); font-size:14px; }
+  /* guestbook / rsvp */
+  .rsvp-form input, .rsvp-form textarea, .rsvp-form select{ width:100%; padding:10px;border-radius:8px;border:1px solid #eee; font-size:15px }
+  .rsvp-form{display:grid; gap:10px}
+  .messages{display:flex; flex-direction:column; gap:8px; margin-top:12px}
 
-    /* gift info */
-    .gift .row{ display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; }
-    .bank-card{ background:#fff7fb; padding:12px; border-radius:10px; width:100%; }
+  footer{ text-align:center; color:var(--muted); padding:18px; font-size:14px }
 
-    /* footer */
-    footer{ text-align:center; color:var(--muted); padding:20px 0 60px; font-size:14px; }
+  /* music icon */
+  .music-icon{ position: fixed; left:20px; bottom:18px; width:44px; height:44px; border-radius:50%; background:var(--accent); color:white; display:flex; align-items:center; justify-content:center; z-index:60; cursor:pointer; box-shadow:0 10px 30px rgba(214,106,135,0.18) }
+  .music-icon.mute{ opacity:0.5 }
 
-    /* music icon left bottom of hero (inside container) */
-    .music-icon{ position:absolute; bottom:20px; left:20px; font-size:22px; color:var(--accent); animation: pulse 2s infinite; z-index:25; cursor:pointer; user-select:none; }
-    @keyframes pulse{ 0%{opacity:0.3;} 50%{opacity:1;} 100%{opacity:0.3;} }
+  /* lightbox */
+  .lightbox{ position:fixed; inset:0; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; z-index:120 }
+  .lightbox img{ max-width:92%; max-height:86%; border-radius:8px }
 
-    /* lightbox overlay */
-    .lightbox{ position:fixed; inset:0; display:none; background:rgba(0,0,0,0.75); justify-content:center; align-items:center; z-index:1000; }
-    .lightbox img{ max-width:90%; max-height:85%; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
-
-    /* responsive */
-    @media(max-width:720px){
-      .hero .bg{ height:320px; }
-      .hero .names{ font-size:32px; }
-    }
-  </style>
+  /* responsive */
+  @media (max-width:800px){
+    .names{font-size:36px}
+    .two-photos img{width:160px;height:160px}
+    .hero-wrap{height:68vh}
+  }
+</style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <div class="hero" id="heroWrap">
-    <!-- background image: put file hero.jpg in same folder -->
-    <img src="hero.jpg" alt="Hero" class="bg" id="heroBg">
-    <div class="overlay">
-      <div style="opacity:0.95; padding:8px 16px; border-radius:999px; background:linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); margin-bottom:8px; font-weight:600;">Thiệp Mời</div>
-      <h1 class="names">Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</h1>
-      <div class="subtitle muted">09 Tháng 11, 2025 — Nhà hàng Tiệc Cưới Gia Lai</div>
-      <div class="date">09:00 sáng • 09/11/2025</div>
-    </div>
-
-    <!-- falling hearts: we will inject several hearts by JS -->
-    <div class="music-icon" id="musicToggle" title="Nhạc nền đang phát">🎵</div>
+<!-- HERO with slides -->
+<section class="hero-wrap" id="hero">
+  <!-- Slides: put your images into images/slide1.jpg slide2.jpg slide3.jpg ... -->
+  <div class="slide show" style="background-image:url('images/slide1.jpg')"></div>
+  <div class="slide" style="background-image:url('images/slide2.jpg')"></div>
+  <div class="slide" style="background-image:url('images/slide3.jpg')"></div>
+  <!-- overlay text -->
+  <div class="overlay">
+    <div class="small-top">SAVE THE DATE</div>
+    <div class="names" id="names">Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</div>
+    <div class="date-badge">09.11.2025 — Nhà hàng Tiệc Cưới Gia Lai</div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <main class="content">
+  <!-- music icon left bottom -->
+  <div class="hero-controls">
+    <div class="music-icon" id="musicIcon" title="Bật / tắt nhạc">🎵</div>
+  </div>
+</section>
 
-    <!-- Story -->
-    <section class="section story">
-      <h2>Chuyện chúng mình</h2>
-      <p>Ngày chúng ta gặp nhau... (viết đoạn ngắn kỷ niệm, bạn chỉnh nội dung này)</p>
-      <p>Hành trình của chúng ta đã đưa đến ngày hôm nay — một lời hứa trọn đời.</p>
-    </section>
+<main>
+  <!-- two photos + intro -->
+  <div class="card" style="text-align:center">
+    <div class="two-photos">
+      <img id="photoGroom" src="images/groom.jpg" alt="Chú rể">
+      <img id="photoBride" src="images/bride.jpg" alt="Cô dâu">
+    </div>
+    <div class="intro-text">
+      <h3 style="color:var(--accent); margin:6px 0 12px">Và.. ngày ấy đã tới</h3>
+      <p>Thật vui vì được gặp và đón tiếp quý khách trong một dịp đặc biệt — Ngày cưới của chúng tôi. Chúng mình mong được chia sẻ khoảnh khắc này cùng bạn.</p>
+    </div>
+  </div>
 
-    <!-- Schedule -->
-    <section class="section schedule">
-      <h2>Lịch Sự Kiện</h2>
-      <div class="item">
-        <div class="time">09:00</div>
-        <div class="desc"><strong>Đón khách & Thành hôn</strong><br>Nhà hàng Tiệc Cưới Gia Lai — <a href="https://maps.app.goo.gl/pkkyJutHDazm7aXC7" target="_blank">Xem chỉ đường</a></div>
-      </div>
-      <div class="item">
-        <div class="time">11:30</div>
-        <div class="desc"><strong>Tiệc Chiêu Đãi</strong><br>Phòng Tiệc chính — Kính mời quý khách dùng tiệc cùng gia đình</div>
-      </div>
-    </section>
+  <!-- Save the Date + countdown + actions -->
+  <div class="card">
+    <div style="text-align:center">
+      <h2 style="margin:6px 0; color:var(--accent)">SAVE THE DATE</h2>
+      <div class="save-row">
+        <div class="countdown">
+          <div style="font-weight:700; color:var(--muted)">Đếm ngược đến ngày cưới</div>
+          <div class="nums" style="margin-top:10px">
+            <div class="num" id="dDays">--<div style="font-size:12px;font-weight:600;color:var(--muted)">Ngày</div></div>
+            <div class="num" id="dHours">--<div style="font-size:12px;font-weight:600;color:var(--muted)">Giờ</div></div>
+            <div class="num" id="dMins">--<div style="font-size:12px;font-weight:600;color:var(--muted)">Phút</div></div>
+            <div class="num" id="dSecs">--<div style="font-size:12px;font-weight:600;color:var(--muted)">Giây</div></div>
+          </div>
 
-    <!-- Gallery -->
-    <section class="section gallery">
-      <h2>Album Hình</h2>
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Put gallery images into folder and name gallery1.jpg, gallery2.jpg, gallery3.jpg -->
-        <img src="gallery1.jpg" alt="g1">
-        <img src="gallery2.jpg" alt="g2">
-        <img src="gallery3.jpg" alt="g3">
-        <img src="gallery4.jpg" alt="g4">
-      </div>
-    </section>
-
-    <!-- RSVP / Guestbook -->
-    <section class="section rsvp">
-      <h2>Gửi lời chúc & Xác nhận tham dự</h2>
-      <form id="rsvpForm" onsubmit="return false;">
-        <input id="rsvpName" placeholder="Họ tên (ví dụ: Nguyễn Văn A)" required />
-        <input id="rsvpPhone" placeholder="Số điện thoại (tùy chọn)" />
-        <select id="rsvpAttending">
-          <option value="yes">Xác nhận tham dự</option>
-          <option value="no">Không tham dự</option>
-        </select>
-        <textarea id="rsvpMessage" placeholder="Gửi lời chúc đến hai bạn..." rows="4"></textarea>
-        <div style="display:flex; gap:10px; align-items:center;">
-          <button class="btn" id="rsvpSend">Gửi lời chúc</button>
-          <div class="muted" id="rsvpStatus" aria-live="polite"></div>
+          <div class="actions" style="margin-top:14px">
+            <button class="btn fill" id="openRsvp">Gửi lời chúc</button>
+            <button class="btn" onclick="document.getElementById('mapLink').scrollIntoView({behavior:'smooth'})">Xác nhận tham dự</button>
+          </div>
         </div>
-      </form>
-
-      <div style="margin-top:14px;">
-        <h3 style="margin:0 0 8px;">Lời chúc đã nhận</h3>
-        <div id="messages" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- Gift info -->
-    <section class="section gift">
-      <h2>Hộp mừng / Thông tin chuyển khoản</h2>
-      <div class="bank-card">
-        <div class="row">
-          <div><strong>Ngân hàng:</strong> Techcombank</div>
-          <div><strong>Tên TK:</strong> Nguyễn Thanh Sang</div>
+  <!-- Gallery -->
+  <div class="card">
+    <h3 style="color:var(--accent); margin:0 0 12px">Album Hình</h3>
+    <div class="gallery-grid" id="gallery">
+      <!-- placeholders - replace with images/gallery1.jpg ... -->
+      <img src="images/gallery1.jpg" alt="">
+      <img src="images/gallery2.jpg" alt="">
+      <img src="images/gallery3.jpg" alt="">
+      <img src="images/gallery4.jpg" alt="">
+      <img src="images/gallery5.jpg" alt="">
+      <img src="images/gallery6.jpg" alt="">
+    </div>
+  </div>
+
+  <!-- Events with background -->
+  <div class="card" id="mapLink" style="background:linear-gradient(180deg, rgba(255,238,243,0.9), rgba(255,255,255,0.9)) url('images/events-bg.jpg') center/cover no-repeat;">
+    <h3 style="color:var(--accent); margin:0 0 12px">Sự Kiện Cưới</h3>
+    <div class="events">
+      <div class="event-item">
+        <img src="images/event1.jpg" alt="">
+        <div class="event-body">
+          <div style="font-weight:700;color:var(--accent)">Lễ Hôn Phối</div>
+          <div class="muted">17:00 — 09/11/2025</div>
+          <div class="muted">Nhà hàng Tiệc Cưới Gia Lai — <a href="https://maps.app.goo.gl/pkkyJutHDazm7aXC7" target="_blank">Xem chỉ đường</a></div>
         </div>
-        <div style="margin-top:8px;"><strong>Số tài khoản:</strong> 0123 456 789</div>
-        <div class="muted" style="margin-top:8px;">(Bạn có thể gửi tiền mừng online hoặc mang phong bì đến tiệc)</div>
       </div>
-    </section>
 
-  </main>
+      <div class="event-item">
+        <img src="images/event2.jpg" alt="">
+        <div class="event-body">
+          <div style="font-weight:700;color:var(--accent)">Lễ Gia Tiên</div>
+          <div class="muted">13:00 — 09/11/2025</div>
+          <div class="muted">Tại tư gia — Địa chỉ sẽ thông báo</div>
+        </div>
+      </div>
 
-  <footer>
-    Rất hân hạnh được đón tiếp — <strong>Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</strong>
-  </footer>
+      <div class="event-item">
+        <img src="images/event3.jpg" alt="">
+        <div class="event-body">
+          <div style="font-weight:700;color:var(--accent)">Tiệc Chiêu Đãi</div>
+          <div class="muted">11:30 — 09/11/2025</div>
+          <div class="muted">Phòng tiệc chính — Nhà hàng Tiệc Cưới Gia Lai</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
+  <!-- Guestbook / RSVP -->
+  <div class="card">
+    <h3 style="color:var(--accent); margin:0 0 12px">Sổ Lưu Bút</h3>
+    <div class="rsvp-form">
+      <input id="name" placeholder="Họ tên (bắt buộc)" />
+      <input id="phone" placeholder="Số điện thoại (không bắt buộc)" />
+      <select id="attend">
+        <option value="yes">Sẽ tham dự</option>
+        <option value="no">Không tham dự</option>
+      </select>
+      <textarea id="wish" rows="4" placeholder="Gửi lời chúc đến hai bạn..."></textarea>
+      <div style="display:flex; gap:10px; align-items:center">
+        <button class="btn fill" id="sendWish">Gửi lời chúc</button>
+        <div id="status" class="muted"></div>
+      </div>
 
-  <!-- Hidden YouTube audio iframe (only audio plays) -->
-  <!-- Replace JgTZvDbaTtg with your YouTube video id if you change music -->
-  <iframe id="ytAudio" width="0" height="0"
-    src="https://www.youtube.com/embed/JgTZvDbaTtg?autoplay=1&loop=1&playlist=JgTZvDbaTtg&controls=0&mute=0"
-    frameborder="0" allow="autoplay; encrypted-media"></iframe>
+      <div class="messages" id="messages"></div>
+    </div>
+  </div>
 
-  <script>
-    /* ---------- hearts generation ---------- */
-    const hero = document.getElementById('heroWrap');
-    const heartCount = 12;
-    for(let i=0;i<heartCount;i++){
-      const h = document.createElement('div');
-      h.className='heart';
-      // random horizontal position
-      const left = Math.random()*95;
-      const size = 12 + Math.random()*26;
-      h.style.left = left + '%';
-      h.style.width = size + 'px';
-      h.style.height = size + 'px';
-      h.style.top = (-40 - Math.random()*200) + 'px';
-      const dur = 5 + Math.random()*6;
-      h.style.animation = `fall ${dur}s linear ${Math.random()*-5}s infinite`;
-      h.style.background = `rgba(${200 + Math.floor(Math.random()*55)},${60 + Math.floor(Math.random()*80)},${90 + Math.floor(Math.random()*80)},${0.7 + Math.random()*0.3})`;
-      hero.appendChild(h);
-    }
+  <footer>Rất hân hạnh được đón tiếp — Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</footer>
+</main>
 
-    /* ---------- guest name from ?to= ---------- */
-    const params = new URLSearchParams(window.location.search);
-    const toName = params.get('to');
-    if(toName){
-      const nameField = document.querySelector('.hero .subtitle');
-      // show on hero small message and prefill rsvp
-      const guestLabel = document.getElementById('guestName');
-      if(guestLabel) guestLabel.innerText = decodeURIComponent(toName);
-      // also prefill rsvp name input
-      const rsvpName = document.getElementById('rsvpName');
-      if(rsvpName) rsvpName.value = decodeURIComponent(toName);
-    }
+<!-- lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()"><img id="lightImg" src=""></div>
 
-    /* ---------- gallery lightbox ---------- */
-    document.querySelectorAll('.gallery-grid img').forEach(img=>{
-      img.addEventListener('click', e=>{
-        document.getElementById('lightboxImg').src = e.target.src;
-        document.getElementById('lightbox').style.display = 'flex';
-      });
-    });
-    function closeLightbox(){ document.getElementById('lightbox').style.display='none'; document.getElementById('lightboxImg').src=''; }
+<!-- Hidden YouTube audio (autoplay & loop). Replace ID JgTZvDbaTtg if needed -->
+<iframe id="ytAudio" width="0" height="0"
+  src="https://www.youtube.com/embed/JgTZvDbaTtg?autoplay=1&loop=1&playlist=JgTZvDbaTtg&controls=0&rel=0"
+  frameborder="0" allow="autoplay; encrypted-media"></iframe>
 
-    /* ---------- guestbook / rsvp (store in localStorage) ---------- */
-    const messagesDiv = document.getElementById('messages');
-    function loadMessages(){
-      const data = JSON.parse(localStorage.getItem('wedding_messages')||'[]');
-      messagesDiv.innerHTML = '';
-      if(data.length===0) messagesDiv.innerHTML = '<div class="muted">Chưa có lời chúc nào.</div>';
-      data.slice().reverse().forEach(m=>{
-        const el = document.createElement('div');
-        el.style.padding = '10px'; el.style.borderRadius='8px'; el.style.background='#fff7fb';
-        el.innerHTML = `<strong>${escapeHtml(m.name)}</strong> <div class="muted" style="font-size:13px">${escapeHtml(m.phone||'')}</div><div style="margin-top:6px">${escapeHtml(m.message)}</div>`;
-        messagesDiv.appendChild(el);
-      });
-    }
-    function escapeHtml(text){ return (text||'').replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+<script>
+/* ---------------- SLIDESHOW (background) ---------------- */
+const slides = Array.from(document.querySelectorAll('.slide'));
+let cur = 0;
+function showSlide(i){
+  slides.forEach((s,idx)=> s.classList.toggle('show', idx===i));
+}
+function nextSlide(){
+  cur = (cur+1) % slides.length;
+  showSlide(cur);
+}
+setInterval(nextSlide, 5000); // change every 5s
 
-    document.getElementById('rsvpSend').addEventListener('click', ()=>{
-      const name = document.getElementById('rsvpName').value.trim();
-      const phone = document.getElementById('rsvpPhone').value.trim();
-      const attending = document.getElementById('rsvpAttending').value;
-      const message = document.getElementById('rsvpMessage').value.trim();
+/* ---------------- hearts generator ---------------- */
+const hero = document.getElementById('hero');
+for(let i=0;i<18;i++){
+  const h = document.createElement('div'); h.className='heart';
+  const left = Math.random()*95 + '%';
+  const size = 10 + Math.random()*28;
+  h.style.left = left; h.style.width = size+'px'; h.style.height = size+'px';
+  h.style.top = (-20 - Math.random()*180)+'px';
+  const dur = 5 + Math.random()*6;
+  h.style.transition = `transform ${dur}s linear, opacity ${dur}s`;
+  hero.appendChild(h);
+  // animate falling by CSS-ish via setTimeout
+  (function(el, d){
+    setTimeout(()=>{ el.style.transform = `translateY(${window.innerHeight + 200}px) rotate(45deg)`; el.style.opacity=0; }, Math.random()*2000);
+    // loop
+    setInterval(()=>{ el.style.transform='translateY(-120px) rotate(45deg)'; el.style.opacity=1; setTimeout(()=>{ el.style.transform = `translateY(${window.innerHeight + 200}px) rotate(45deg)`; el.style.opacity=0; }, 100); }, d*1000 + 2000);
+  })(h, dur);
+}
 
-      if(!name){ document.getElementById('rsvpStatus').innerText = 'Vui lòng nhập tên.'; return; }
-      const arr = JSON.parse(localStorage.getItem('wedding_messages')||'[]');
-      arr.push({name,phone,attending,message, created: new Date().toISOString()});
-      localStorage.setItem('wedding_messages', JSON.stringify(arr));
-      document.getElementById('rsvpStatus').innerText = 'Cảm ơn đã gửi lời chúc!';
-      document.getElementById('rsvpMessage').value = '';
-      setTimeout(()=> document.getElementById('rsvpStatus').innerText = '', 3000);
-      loadMessages();
-    });
+/* ---------------- countdown to wedding ---------------- */
+const target = new Date('2025-11-09T09:00:00'); // 09 Nov 2025 09:00
+function updateCountdown(){
+  const now = new Date();
+  let diff = Math.max(0, target - now);
+  const days = Math.floor(diff / (1000*60*60*24)); diff -= days*24*60*60*1000;
+  const hours = Math.floor(diff / (1000*60*60)); diff -= hours*1000*60*60;
+  const mins = Math.floor(diff / (1000*60)); diff -= mins*1000*60;
+  const secs = Math.floor(diff / 1000);
+  document.getElementById('dDays').innerHTML = days + '<div style="font-size:12px;color:var(--muted);font-weight:600">Ngày</div>';
+  document.getElementById('dHours').innerHTML = hours + '<div style="font-size:12px;color:var(--muted);font-weight:600">Giờ</div>';
+  document.getElementById('dMins').innerHTML = mins + '<div style="font-size:12px;color:var(--muted);font-weight:600">Phút</div>';
+  document.getElementById('dSecs').innerHTML = secs + '<div style="font-size:12px;color:var(--muted);font-weight:600">Giây</div>';
+}
+updateCountdown(); setInterval(updateCountdown, 1000);
 
-    loadMessages();
+/* ---------------- gallery lightbox ---------------- */
+document.querySelectorAll('.gallery-grid img').forEach(img=>{
+  img.addEventListener('click', e=>{
+    document.getElementById('lightImg').src = e.target.src;
+    document.getElementById('lightbox').style.display='flex';
+  });
+});
+function closeLightbox(){ document.getElementById('lightbox').style.display='none'; document.getElementById('lightImg').src=''; }
 
-    /* ---------- music toggle (icon) ---------- */
-    const musicToggle = document.getElementById('musicToggle');
-    const ytFrame = document.getElementById('ytAudio');
-    let musicPlaying = true; // we attempt autoplay
-    musicToggle.addEventListener('click', ()=>{
-      // we can't directly control youtube from iframe without API; reload with mute param toggle
-      if(!musicPlaying){
-        ytFrame.src = ytFrame.src.replace('&mute=1','');
-        musicToggle.style.opacity=1;
-        musicPlaying=true;
-      } else {
-        // mute by adding &mute=1
-        if(!ytFrame.src.includes('mute=1')) ytFrame.src = ytFrame.src + '&mute=1';
-        musicToggle.style.opacity=0.4;
-        musicPlaying=false;
-      }
-    });
+/* ------------------ RSVP (localStorage) ------------------ */
+const messagesEl = document.getElementById('messages');
+function loadMessages(){
+  const arr = JSON.parse(localStorage.getItem('wedding_messages')||'[]');
+  messagesEl.innerHTML = '';
+  if(arr.length===0){ messagesEl.innerHTML = '<div style="color:var(--muted)">Chưa có lời chúc nào.</div>'; return; }
+  arr.slice().reverse().forEach(m=>{
+    const d = document.createElement('div'); d.style.padding='10px'; d.style.borderRadius='8px'; d.style.background='#fff7fb';
+    d.innerHTML = `<strong>${escape(m.name)}</strong> <div style="color:var(--muted);font-size:13px">${escape(m.phone||'')}</div><div style="margin-top:6px">${escape(m.wish)}</div>`;
+    messagesEl.appendChild(d);
+  });
+}
+function escape(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-    /* try to indicate playing status by fading icon */
-    setTimeout(()=>musicToggle.style.opacity=1, 1200);
+document.getElementById('sendWish').addEventListener('click', ()=>{
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const attend = document.getElementById('attend').value;
+  const wish = document.getElementById('wish').value.trim();
+  if(!name){ document.getElementById('status').innerText='Vui lòng nhập họ tên.'; return; }
+  const arr = JSON.parse(localStorage.getItem('wedding_messages')||'[]');
+  arr.push({name,phone,attend,wish,created:new Date().toISOString()});
+  localStorage.setItem('wedding_messages', JSON.stringify(arr));
+  document.getElementById('status').innerText = 'Cảm ơn đã gửi lời chúc!';
+  document.getElementById('name').value=''; document.getElementById('phone').value=''; document.getElementById('wish').value='';
+  setTimeout(()=>document.getElementById('status').innerText='', 2500);
+  loadMessages();
+});
+loadMessages();
 
-    /* ---------- small helpful: if hero image missing, use couple placeholder ---------- */
-    document.getElementById('heroBg').addEventListener('error', function(){ this.src='couple.jpg'; this.style.objectFit='cover'; });
+/* ---------- music toggle (uses iframe src mute param) ---------- */
+const musicIcon = document.getElementById('musicIcon');
+const yt = document.getElementById('ytAudio');
+let muted = false;
+musicIcon.addEventListener('click', ()=>{
+  muted = !muted;
+  if(muted){ // add &mute=1 if not present
+    if(!yt.src.includes('mute=1')) yt.src = yt.src + '&mute=1';
+    musicIcon.classList.add('mute');
+  } else {
+    yt.src = yt.src.replace('&mute=1','');
+    musicIcon.classList.remove('mute');
+  }
+});
 
-  </script>
+/* ---------- ?to= to prefill name ---------- */
+const params = new URLSearchParams(window.location.search);
+const to = params.get('to');
+if(to){
+  const nameIn = document.getElementById('name');
+  if(nameIn) nameIn.value = decodeURIComponent(to);
+  // also show small guest prefill on hero if needed
+  const names = document.getElementById('names');
+  if(names) names.innerText = decodeURIComponent(to) + ' — ' + names.innerText;
+}
+
+/* ---------- open RSVP when clicking top button ---------- */
+document.getElementById('openRsvp').addEventListener('click', ()=>{ window.scrollTo({top: document.querySelector('.rsvp-form').offsetTop - 80, behavior:'smooth'}) });
+
+</script>
 </body>
 </html>
