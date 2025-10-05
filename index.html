@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiệp Cưới – Nguyễn Thanh Sang & Nguyễn Thùy Vân</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffe9f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #4a2c2a;
+      overflow-x: hidden;
+    }
+    .container {
+      position: relative;
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      padding: 30px;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 100, 150, 0.8);
+      transform: rotate(45deg);
+      top: -10px;
+      left: calc(50% - 10px);
+      animation: fall 5s infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(600px) rotate(45deg); opacity: 0; }
+    }
+    .heart:nth-child(2) { left: 20%; animation-delay: 1s; background: rgba(255, 120, 160, 0.7); }
+    .heart:nth-child(3) { left: 80%; animation-delay: 2s; background: rgba(255, 90, 140, 0.9); }
+    img.couple-photo {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      object-fit: cover;
+    }
+    .title { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+    .names { font-size: 28px; color: #d45b86; margin: 20px 0; font-family: 'Great Vibes', cursive; }
+    .details { font-size: 18px; line-height: 1.6; margin-bottom: 20px; }
+    .map-link a { color: #d45b86; text-decoration: none; font-weight: bold; }
+    .map-link a:hover { text-decoration: underline; }
+    .footer { margin-top: 25px; font-style: italic; }
+    .music-icon {
+      position: absolute; bottom: 20px; left: 20px;
+      font-size: 24px; color: #d45b86;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%{opacity:0.3;} 50%{opacity:1;} 100%{opacity:0.3;} }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <img src="couple.jpg" alt="Ảnh cưới" class="couple-photo" />
+    <div class="title">Thiệp Mời</div>
+    <div class="details">
+      <p>Kính mời <strong><span id="guestName">Quý khách</span></strong>,</p>
+      <p>Đến tham dự hôn lễ của chúng tôi</p>
+      <div class="names">Nguyễn Thanh Sang & Nguyễn Thùy Vân</div>
+      <p>Vào lúc <strong>09:00 sáng</strong> ngày <strong>09 tháng 11 năm 2025</strong></p>
+      <p>Tại <strong>Nhà hàng Tiệc Cưới Gia Lai</strong></p>
+      <div class="map-link">
+        <a href="https://maps.app.goo.gl/pkkyJutHDazm7aXC7" target="_blank">📍 Xem chỉ đường</a>
+      </div>
+    </div>
+    <div class="footer">Rất hân hạnh được đón tiếp!</div>
+    <div class="music-icon">🎵</div>
+  </div>
+  <iframe width="0" height="0"
+    src="https://www.youtube.com/embed/JgTZvDbaTtg?autoplay=1&loop=1&playlist=JgTZvDbaTtg"
+    frameborder="0" allow="autoplay"></iframe>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const toName = params.get('to');
+    if (toName) {
+      document.getElementById('guestName').innerText = decodeURIComponent(toName);
+    }
+  </script>
+</body>
+</html>
