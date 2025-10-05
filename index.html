@@ -1,93 +1,310 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thiệp Cưới – Nguyễn Thanh Sang & Nguyễn Thùy Vân</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thiệp Cưới — Nguyễn Thanh Sang & Nguyễn Thùy Vân</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #ffe9f0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #4a2c2a;
-      overflow-x: hidden;
+    :root{
+      --pink:#ffdfee;
+      --accent:#d45b86;
+      --text:#3b2a2a;
+      --muted:#6b514f;
+      --card:#ffffff;
     }
-    .container {
-      position: relative;
-      max-width: 600px;
-      margin: 50px auto;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      padding: 30px;
-      overflow: hidden;
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: 'Roboto', sans-serif; color:var(--text); background:linear-gradient(180deg,#fff0f6 0%, #ffeef6 100%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: rgba(255, 100, 150, 0.8);
-      transform: rotate(45deg);
-      top: -10px;
-      left: calc(50% - 10px);
-      animation: fall 5s infinite;
+
+    /* HERO */
+    .hero{
+      position:relative;
+      width:100%; max-width:1100px; margin:30px auto;
+      border-radius:16px; overflow:hidden; box-shadow:0 12px 50px rgba(0,0,0,0.12);
+      background:var(--card);
+    }
+    .hero .bg{
+      width:100%; height:420px; object-fit:cover; display:block;
+      background:linear-gradient(0deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
+    }
+    .hero .overlay{
+      position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; padding:30px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+    }
+    .hero .names{
+      font-family:'Playfair Display', serif; color:var(--accent);
+      font-size:44px; letter-spacing:1px; margin:0 0 8px;
+    }
+    .hero .subtitle{ font-size:16px; color:var(--muted); margin-bottom:14px; }
+    .hero .date{
+      background: rgba(255,255,255,0.85); padding:8px 16px; border-radius:999px; font-weight:500; color:var(--text);
+      display:inline-block; box-shadow:0 6px 18px rgba(212,91,134,0.08);
+    }
+
+    /* hearts falling */
+    .heart{
+      position:absolute; width:18px; height:18px; background:var(--accent); transform:rotate(45deg); border-radius:3px;
+      opacity:0.9; box-shadow:0 6px 18px rgba(212,91,134,0.15);
+      will-change: transform, opacity;
     }
     @keyframes fall {
-      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(600px) rotate(45deg); opacity: 0; }
+      0% { transform: translateY(-80px) rotate(45deg) scale(0.9); opacity:1; }
+      100% { transform: translateY(720px) rotate(45deg) scale(0.6); opacity:0; }
     }
-    .heart:nth-child(2) { left: 20%; animation-delay: 1s; background: rgba(255, 120, 160, 0.7); }
-    .heart:nth-child(3) { left: 80%; animation-delay: 2s; background: rgba(255, 90, 140, 0.9); }
-    img.couple-photo {
-      width: 100%;
-      border-radius: 15px;
-      margin-bottom: 25px;
-      object-fit: cover;
+
+    /* CONTENT */
+    .content{ padding:28px; max-width:900px; margin:0 auto; }
+
+    .section{ background:var(--card); border-radius:12px; padding:20px; margin:18px 0; box-shadow:0 8px 30px rgba(0,0,0,0.04); }
+    .section h2{ font-family:'Playfair Display', serif; color:var(--accent); margin:0 0 12px; font-size:22px; }
+    .story p{ color:var(--muted); line-height:1.65; margin:0 0 10px; }
+
+    /* schedule */
+    .schedule .item{ display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; }
+    .schedule .time{ min-width:110px; background:#fff4f8; color:var(--accent); padding:8px 10px; border-radius:8px; font-weight:600; text-align:center; }
+    .schedule .desc{ color:var(--muted); }
+
+    /* gallery */
+    .gallery-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; }
+    .gallery-grid img{ width:100%; height:110px; object-fit:cover; border-radius:10px; cursor:pointer; }
+
+    /* guestbook / rsvp */
+    .rsvp form{ display:flex; flex-direction:column; gap:10px; }
+    .rsvp input, .rsvp textarea{ padding:10px; border-radius:8px; border:1px solid #eee; font-size:15px; resize:vertical; }
+    .btn{ display:inline-block; background:var(--accent); color:#fff; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600; border:none; cursor:pointer; }
+    .muted{ color:var(--muted); font-size:14px; }
+
+    /* gift info */
+    .gift .row{ display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; }
+    .bank-card{ background:#fff7fb; padding:12px; border-radius:10px; width:100%; }
+
+    /* footer */
+    footer{ text-align:center; color:var(--muted); padding:20px 0 60px; font-size:14px; }
+
+    /* music icon left bottom of hero (inside container) */
+    .music-icon{ position:absolute; bottom:20px; left:20px; font-size:22px; color:var(--accent); animation: pulse 2s infinite; z-index:25; cursor:pointer; user-select:none; }
+    @keyframes pulse{ 0%{opacity:0.3;} 50%{opacity:1;} 100%{opacity:0.3;} }
+
+    /* lightbox overlay */
+    .lightbox{ position:fixed; inset:0; display:none; background:rgba(0,0,0,0.75); justify-content:center; align-items:center; z-index:1000; }
+    .lightbox img{ max-width:90%; max-height:85%; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
+
+    /* responsive */
+    @media(max-width:720px){
+      .hero .bg{ height:320px; }
+      .hero .names{ font-size:32px; }
     }
-    .title { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
-    .names { font-size: 28px; color: #d45b86; margin: 20px 0; font-family: 'Great Vibes', cursive; }
-    .details { font-size: 18px; line-height: 1.6; margin-bottom: 20px; }
-    .map-link a { color: #d45b86; text-decoration: none; font-weight: bold; }
-    .map-link a:hover { text-decoration: underline; }
-    .footer { margin-top: 25px; font-style: italic; }
-    .music-icon {
-      position: absolute; bottom: 20px; left: 20px;
-      font-size: 24px; color: #d45b86;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%{opacity:0.3;} 50%{opacity:1;} 100%{opacity:0.3;} }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <div class="heart"></div>
-    <img src="couple.jpg" alt="Ảnh cưới" class="couple-photo" />
-    <div class="title">Thiệp Mời</div>
-    <div class="details">
-      <p>Kính mời <strong><span id="guestName">Quý khách</span></strong>,</p>
-      <p>Đến tham dự hôn lễ của chúng tôi</p>
-      <div class="names">Nguyễn Thanh Sang & Nguyễn Thùy Vân</div>
-      <p>Vào lúc <strong>09:00 sáng</strong> ngày <strong>09 tháng 11 năm 2025</strong></p>
-      <p>Tại <strong>Nhà hàng Tiệc Cưới Gia Lai</strong></p>
-      <div class="map-link">
-        <a href="https://maps.app.goo.gl/pkkyJutHDazm7aXC7" target="_blank">📍 Xem chỉ đường</a>
-      </div>
+
+  <!-- HERO -->
+  <div class="hero" id="heroWrap">
+    <!-- background image: put file hero.jpg in same folder -->
+    <img src="hero.jpg" alt="Hero" class="bg" id="heroBg">
+    <div class="overlay">
+      <div style="opacity:0.95; padding:8px 16px; border-radius:999px; background:linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); margin-bottom:8px; font-weight:600;">Thiệp Mời</div>
+      <h1 class="names">Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</h1>
+      <div class="subtitle muted">09 Tháng 11, 2025 — Nhà hàng Tiệc Cưới Gia Lai</div>
+      <div class="date">09:00 sáng • 09/11/2025</div>
     </div>
-    <div class="footer">Rất hân hạnh được đón tiếp!</div>
-    <div class="music-icon">🎵</div>
+
+    <!-- falling hearts: we will inject several hearts by JS -->
+    <div class="music-icon" id="musicToggle" title="Nhạc nền đang phát">🎵</div>
   </div>
-  <iframe width="0" height="0"
-    src="https://www.youtube.com/embed/JgTZvDbaTtg?autoplay=1&loop=1&playlist=JgTZvDbaTtg"
-    frameborder="0" allow="autoplay"></iframe>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- Story -->
+    <section class="section story">
+      <h2>Chuyện chúng mình</h2>
+      <p>Ngày chúng ta gặp nhau... (viết đoạn ngắn kỷ niệm, bạn chỉnh nội dung này)</p>
+      <p>Hành trình của chúng ta đã đưa đến ngày hôm nay — một lời hứa trọn đời.</p>
+    </section>
+
+    <!-- Schedule -->
+    <section class="section schedule">
+      <h2>Lịch Sự Kiện</h2>
+      <div class="item">
+        <div class="time">09:00</div>
+        <div class="desc"><strong>Đón khách & Thành hôn</strong><br>Nhà hàng Tiệc Cưới Gia Lai — <a href="https://maps.app.goo.gl/pkkyJutHDazm7aXC7" target="_blank">Xem chỉ đường</a></div>
+      </div>
+      <div class="item">
+        <div class="time">11:30</div>
+        <div class="desc"><strong>Tiệc Chiêu Đãi</strong><br>Phòng Tiệc chính — Kính mời quý khách dùng tiệc cùng gia đình</div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section gallery">
+      <h2>Album Hình</h2>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Put gallery images into folder and name gallery1.jpg, gallery2.jpg, gallery3.jpg -->
+        <img src="gallery1.jpg" alt="g1">
+        <img src="gallery2.jpg" alt="g2">
+        <img src="gallery3.jpg" alt="g3">
+        <img src="gallery4.jpg" alt="g4">
+      </div>
+    </section>
+
+    <!-- RSVP / Guestbook -->
+    <section class="section rsvp">
+      <h2>Gửi lời chúc & Xác nhận tham dự</h2>
+      <form id="rsvpForm" onsubmit="return false;">
+        <input id="rsvpName" placeholder="Họ tên (ví dụ: Nguyễn Văn A)" required />
+        <input id="rsvpPhone" placeholder="Số điện thoại (tùy chọn)" />
+        <select id="rsvpAttending">
+          <option value="yes">Xác nhận tham dự</option>
+          <option value="no">Không tham dự</option>
+        </select>
+        <textarea id="rsvpMessage" placeholder="Gửi lời chúc đến hai bạn..." rows="4"></textarea>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn" id="rsvpSend">Gửi lời chúc</button>
+          <div class="muted" id="rsvpStatus" aria-live="polite"></div>
+        </div>
+      </form>
+
+      <div style="margin-top:14px;">
+        <h3 style="margin:0 0 8px;">Lời chúc đã nhận</h3>
+        <div id="messages" style="display:flex;flex-direction:column;gap:10px;"></div>
+      </div>
+    </section>
+
+    <!-- Gift info -->
+    <section class="section gift">
+      <h2>Hộp mừng / Thông tin chuyển khoản</h2>
+      <div class="bank-card">
+        <div class="row">
+          <div><strong>Ngân hàng:</strong> Techcombank</div>
+          <div><strong>Tên TK:</strong> Nguyễn Thanh Sang</div>
+        </div>
+        <div style="margin-top:8px;"><strong>Số tài khoản:</strong> 0123 456 789</div>
+        <div class="muted" style="margin-top:8px;">(Bạn có thể gửi tiền mừng online hoặc mang phong bì đến tiệc)</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Rất hân hạnh được đón tiếp — <strong>Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</strong>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
+
+  <!-- Hidden YouTube audio iframe (only audio plays) -->
+  <!-- Replace JgTZvDbaTtg with your YouTube video id if you change music -->
+  <iframe id="ytAudio" width="0" height="0"
+    src="https://www.youtube.com/embed/JgTZvDbaTtg?autoplay=1&loop=1&playlist=JgTZvDbaTtg&controls=0&mute=0"
+    frameborder="0" allow="autoplay; encrypted-media"></iframe>
+
   <script>
+    /* ---------- hearts generation ---------- */
+    const hero = document.getElementById('heroWrap');
+    const heartCount = 12;
+    for(let i=0;i<heartCount;i++){
+      const h = document.createElement('div');
+      h.className='heart';
+      // random horizontal position
+      const left = Math.random()*95;
+      const size = 12 + Math.random()*26;
+      h.style.left = left + '%';
+      h.style.width = size + 'px';
+      h.style.height = size + 'px';
+      h.style.top = (-40 - Math.random()*200) + 'px';
+      const dur = 5 + Math.random()*6;
+      h.style.animation = `fall ${dur}s linear ${Math.random()*-5}s infinite`;
+      h.style.background = `rgba(${200 + Math.floor(Math.random()*55)},${60 + Math.floor(Math.random()*80)},${90 + Math.floor(Math.random()*80)},${0.7 + Math.random()*0.3})`;
+      hero.appendChild(h);
+    }
+
+    /* ---------- guest name from ?to= ---------- */
     const params = new URLSearchParams(window.location.search);
     const toName = params.get('to');
-    if (toName) {
-      document.getElementById('guestName').innerText = decodeURIComponent(toName);
+    if(toName){
+      const nameField = document.querySelector('.hero .subtitle');
+      // show on hero small message and prefill rsvp
+      const guestLabel = document.getElementById('guestName');
+      if(guestLabel) guestLabel.innerText = decodeURIComponent(toName);
+      // also prefill rsvp name input
+      const rsvpName = document.getElementById('rsvpName');
+      if(rsvpName) rsvpName.value = decodeURIComponent(toName);
     }
+
+    /* ---------- gallery lightbox ---------- */
+    document.querySelectorAll('.gallery-grid img').forEach(img=>{
+      img.addEventListener('click', e=>{
+        document.getElementById('lightboxImg').src = e.target.src;
+        document.getElementById('lightbox').style.display = 'flex';
+      });
+    });
+    function closeLightbox(){ document.getElementById('lightbox').style.display='none'; document.getElementById('lightboxImg').src=''; }
+
+    /* ---------- guestbook / rsvp (store in localStorage) ---------- */
+    const messagesDiv = document.getElementById('messages');
+    function loadMessages(){
+      const data = JSON.parse(localStorage.getItem('wedding_messages')||'[]');
+      messagesDiv.innerHTML = '';
+      if(data.length===0) messagesDiv.innerHTML = '<div class="muted">Chưa có lời chúc nào.</div>';
+      data.slice().reverse().forEach(m=>{
+        const el = document.createElement('div');
+        el.style.padding = '10px'; el.style.borderRadius='8px'; el.style.background='#fff7fb';
+        el.innerHTML = `<strong>${escapeHtml(m.name)}</strong> <div class="muted" style="font-size:13px">${escapeHtml(m.phone||'')}</div><div style="margin-top:6px">${escapeHtml(m.message)}</div>`;
+        messagesDiv.appendChild(el);
+      });
+    }
+    function escapeHtml(text){ return (text||'').replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+
+    document.getElementById('rsvpSend').addEventListener('click', ()=>{
+      const name = document.getElementById('rsvpName').value.trim();
+      const phone = document.getElementById('rsvpPhone').value.trim();
+      const attending = document.getElementById('rsvpAttending').value;
+      const message = document.getElementById('rsvpMessage').value.trim();
+
+      if(!name){ document.getElementById('rsvpStatus').innerText = 'Vui lòng nhập tên.'; return; }
+      const arr = JSON.parse(localStorage.getItem('wedding_messages')||'[]');
+      arr.push({name,phone,attending,message, created: new Date().toISOString()});
+      localStorage.setItem('wedding_messages', JSON.stringify(arr));
+      document.getElementById('rsvpStatus').innerText = 'Cảm ơn đã gửi lời chúc!';
+      document.getElementById('rsvpMessage').value = '';
+      setTimeout(()=> document.getElementById('rsvpStatus').innerText = '', 3000);
+      loadMessages();
+    });
+
+    loadMessages();
+
+    /* ---------- music toggle (icon) ---------- */
+    const musicToggle = document.getElementById('musicToggle');
+    const ytFrame = document.getElementById('ytAudio');
+    let musicPlaying = true; // we attempt autoplay
+    musicToggle.addEventListener('click', ()=>{
+      // we can't directly control youtube from iframe without API; reload with mute param toggle
+      if(!musicPlaying){
+        ytFrame.src = ytFrame.src.replace('&mute=1','');
+        musicToggle.style.opacity=1;
+        musicPlaying=true;
+      } else {
+        // mute by adding &mute=1
+        if(!ytFrame.src.includes('mute=1')) ytFrame.src = ytFrame.src + '&mute=1';
+        musicToggle.style.opacity=0.4;
+        musicPlaying=false;
+      }
+    });
+
+    /* try to indicate playing status by fading icon */
+    setTimeout(()=>musicToggle.style.opacity=1, 1200);
+
+    /* ---------- small helpful: if hero image missing, use couple placeholder ---------- */
+    document.getElementById('heroBg').addEventListener('error', function(){ this.src='couple.jpg'; this.style.objectFit='cover'; });
+
   </script>
 </body>
 </html>
