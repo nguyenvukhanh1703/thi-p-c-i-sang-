@@ -113,66 +113,99 @@
   <!-- two photos + intro -->
    <!-- Phần cô dâu - chú rể -->
   <div class="card" style="text-align:center">
+<div class="two-photos">
+  <!-- Chú rể -->
+  <div class="person">
+    <img src="images/groom.jpg" alt="Chú rể">
+    <div class="name-tag">Nguyễn Thanh Sang</div>
+  </div>
 
-    <div class="two-photos" style="display:flex; align-items:center; justify-content:center; gap:40px; position:relative;">
-      
-      <!-- Ảnh chú rể -->
-      <div class="person" style="position:relative;">
-        <img id="photoGroom" src="images/groom.jpg" alt="Chú rể" style="width:250px; border-radius:12px;">
-        <div class="name-tag">Trương Phong</div>
-      </div>
+  <!-- Trái tim nhỏ ở giữa -->
+  <img src="images/heart-small.png" alt="hearts" class="heart-center">
 
-      <!-- Icon 2 trái tim nhỏ ở giữa -->
-      <div class="hearts-center" style="display:flex; align-items:center; justify-content:center;">
-        <img src="images/hearts.png" alt="hearts" style="width:36px; height:auto; opacity:0.9; margin-top:10px;">
-      </div>
+  <!-- Cô dâu -->
+  <div class="person">
+    <img src="images/bride.jpg" alt="Cô dâu">
+    <div class="name-tag">Nguyễn Thùy Vân</div>
+  </div>
+</div>
 
-      <!-- Ảnh cô dâu -->
-      <div class="person" style="position:relative;">
-        <img id="photoBride" src="images/bride.jpg" alt="Cô dâu" style="width:250px; border-radius:12px;">
-        <div class="name-tag">Hoàng Phương</div>
-      </div>
+<div class="intro-text">
+  <h3 style="color:var(--accent); margin-bottom:12px;">Và.. Ngày ấy đã tới</h3>
+  <p style="max-width:600px; margin:0 auto; line-height:1.6;">
+    Thật vui vì được gặp và đón tiếp các bạn trong một dịp đặc biệt — Ngày cưới của chúng mình.<br>
+    Chúng mình muốn gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn biết rằng chúng mình rất hạnh phúc khi thấy bạn ở đó.<br>
+    Cảm ơn các bạn rất nhiều vì sự hiện diện cùng những lời chúc tốt đẹp mà bạn đã dành cho chúng mình nha!
+  </p>
+  <div class="signature">Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</div>
+</div>
 
-    </div>
+    
 
-    <div class="intro-text" style="margin-top:28px;">
-      <h3 style="color:var(--accent); margin-bottom:12px;">Và.. Ngày ấy đã tới</h3>
-      <p style="max-width:600px; margin:0 auto; line-height:1.6;">
-        Thật vui vì được gặp và đón tiếp các bạn trong một dịp đặc biệt — Ngày cưới của chúng mình.<br>
-        Chúng mình muốn gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn biết rằng chúng mình rất hạnh phúc khi thấy bạn ở đó.<br>
-        Cảm ơn các bạn rất nhiều vì sự hiện diện cùng những lời chúc tốt đẹp mà bạn đã dành cho chúng mình nha!
-      </p>
-
-      <div class="signature">Trương Phong &amp; Hoàng Phương</div>
-    </div>
+     
   </div>
 
   <style>
-    .person:hover .name-tag {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .name-tag {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      background: rgba(255, 182, 193, 0.95);
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 14px;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-    .signature {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 28px;
-      color: var(--accent);
-      margin-top: 22px;
-    }
+    .two-photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+}
+
+.two-photos img {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 8px solid #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.two-photos .person:hover img {
+  transform: scale(1.05);
+}
+
+.name-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(214,106,135,0.9);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.person {
+  position: relative;
+}
+
+.person:hover .name-tag {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.heart-center {
+  width: 30px;
+  height: auto;
+  opacity: 0.9;
+  margin-top: 10px;
+}
+.signature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 30px;
+  color: var(--accent);
+  margin-top: 25px;
+}
+
   </style>
 
 
