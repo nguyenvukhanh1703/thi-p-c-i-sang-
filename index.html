@@ -112,19 +112,67 @@
 <main>
   <!-- two photos + intro -->
   <div class="card" style="text-align:center">
-    <div class="two-photos">
-      <img id="photoGroom" src="images/groom.jpg" alt="Chú rể">
-      <img id="photoBride" src="images/bride.jpg" alt="Cô dâu">
-    </div>
-   <div class="intro-text">
-  <h3 style="color:var(--accent); margin:6px 0 12px">Và.. ngày ấy đã tới</h3>
-  <p>Thật vui vì được gặp và đón tiếp các bạn trong một dịp đặc biệt - Ngày cưới của chúng mình.  
-  Chúng mình muốn gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn biết rằng chúng mình rất hạnh phúc khi thấy bạn ở đó.  
-  Cảm ơn các bạn rất nhiều vì sự hiện diện cùng những lời chúc tốt đẹp mà bạn đã dành cho chúng mình nha!</p>
+    <div class="card" style="text-align:center">
 
-  <div style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent); margin-top: 18px; font-weight: 700;">
-    Thanh Sang &amp; Thùy Vân
+  <div class="two-photos" style="position:relative; align-items:center;">
+    <!-- Ảnh chú rể -->
+    <div class="person" style="position:relative;">
+      <img id="photoGroom" src="images/groom.jpg" alt="Chú rể">
+      <div class="name-tag">Nguyễn Thanh Sang</div>
+    </div>
+
+    <!-- Icon 2 trái tim giữa -->
+    <div class="hearts-center" style="display:flex;flex-direction:column;align-items:center;">
+      <img src="images/hearts.png" alt="hearts" style="width:60px;opacity:0.9;">
+    </div>
+
+    <!-- Ảnh cô dâu -->
+    <div class="person" style="position:relative;">
+      <img id="photoBride" src="images/bride.jpg" alt="Cô dâu">
+      <div class="name-tag">Nguyễn Thùy Vân</div>
+    </div>
   </div>
+
+  <div class="intro-text">
+    <h3 style="color:var(--accent); margin:6px 0 12px">Và.. Ngày ấy đã tới</h3>
+    <p>
+      Thật vui vì được gặp và đón tiếp các bạn trong một dịp đặc biệt — Ngày cưới của chúng mình.<br>
+      Chúng mình muốn gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn biết rằng chúng mình rất hạnh phúc khi thấy bạn ở đó.<br>
+      Cảm ơn các bạn rất nhiều vì sự hiện diện cùng những lời chúc tốt đẹp mà bạn đã dành cho chúng mình nha!
+    </p>
+
+    <div class="signature">Nguyễn Thanh Sang &amp; Nguyễn Thùy Vân</div>
+  </div>
+</div>
+
+<style>
+.person:hover .name-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+.name-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(214,106,135,0.9);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.signature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--accent);
+  margin-top: 18px;
+}
+</style>
+
 </div>
   </div>
 
